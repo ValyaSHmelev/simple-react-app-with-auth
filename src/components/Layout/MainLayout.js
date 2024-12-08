@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Button, theme } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, HomeOutlined } from '@ant-design/icons';
+import { Layout, Menu, Button, theme, Typography } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, HomeOutlined, CloudServerOutlined } from '@ant-design/icons';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
+const { Title } = Typography;
 
 const MainLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -18,7 +19,18 @@ const MainLayout = ({ children }) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" style={{ height: 32, margin: 16, background: 'rgba(255,255,255,.2)' }} />
+        <div className="logo" style={{ 
+          height: 64, 
+          margin: '16px', 
+          background: 'rgba(255,255,255,.2)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px'
+        }}>
+          <CloudServerOutlined style={{ fontSize: '24px', color: '#fff' }} />
+          {!collapsed && <Title level={4} style={{ margin: 0, color: '#fff' }}>ЦСМ</Title>}
+        </div>
         <Menu
           theme="dark"
           mode="inline"
