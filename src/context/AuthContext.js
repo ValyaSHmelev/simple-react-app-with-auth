@@ -5,7 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
   const [users, setUsers] = useState(usersData.users);
 
   const login = (username, password) => {
@@ -34,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
+    if (storedUser && !user) {
       setUser(JSON.parse(storedUser));
     }
   }, []);
