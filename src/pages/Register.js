@@ -10,10 +10,10 @@ const Register = () => {
 
   const onFinish = (values) => {
     if (register(values.username, values.password)) {
-      message.success('Registration successful! Please login.');
+      message.success('Регистрация успешна! Пожалуйста, войдите в систему.');
       navigate('/login');
     } else {
-      message.error('Username already exists');
+      message.error('Пользователь с таким именем уже существует');
     }
   };
 
@@ -25,47 +25,47 @@ const Register = () => {
       alignItems: 'center',
       background: '#f0f2f5'
     }}>
-      <Card title="Register" style={{ width: 300 }}>
+      <Card title="Регистрация" style={{ width: 300 }}>
         <Form
           name="register"
           onFinish={onFinish}
         >
           <Form.Item
             name="username"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Пожалуйста, введите имя пользователя!' }]}
           >
-            <Input prefix={<UserOutlined />} placeholder="Username" />
+            <Input prefix={<UserOutlined />} placeholder="Имя пользователя" />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            rules={[{ required: true, message: 'Пожалуйста, введите пароль!' }]}
           >
-            <Input.Password prefix={<LockOutlined />} placeholder="Password" />
+            <Input.Password prefix={<LockOutlined />} placeholder="Пароль" />
           </Form.Item>
           <Form.Item
             name="confirm"
             dependencies={['password']}
             rules={[
-              { required: true, message: 'Please confirm your password!' },
+              { required: true, message: 'Пожалуйста, подтвердите пароль!' },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('Passwords do not match!'));
+                  return Promise.reject(new Error('Пароли не совпадают!'));
                 },
               }),
             ]}
           >
-            <Input.Password prefix={<LockOutlined />} placeholder="Confirm Password" />
+            <Input.Password prefix={<LockOutlined />} placeholder="Подтвердите пароль" />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-              Register
+              Зарегистрироваться
             </Button>
           </Form.Item>
           <div style={{ textAlign: 'center' }}>
-            Already have an account? <Link to="/login">Login now!</Link>
+            Уже есть аккаунт? <Link to="/login">Войти!</Link>
           </div>
         </Form>
       </Card>

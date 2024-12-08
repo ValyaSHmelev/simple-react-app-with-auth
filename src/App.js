@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 import MainLayout from './components/Layout/MainLayout';
 
 const PrivateRoute = ({ children }) => {
@@ -24,6 +25,16 @@ function App() {
               <PrivateRoute>
                 <MainLayout>
                   <Home />
+                </MainLayout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <MainLayout>
+                  <Profile />
                 </MainLayout>
               </PrivateRoute>
             }

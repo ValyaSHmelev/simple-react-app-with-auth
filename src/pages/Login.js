@@ -10,10 +10,10 @@ const Login = () => {
 
   const onFinish = (values) => {
     if (login(values.username, values.password)) {
-      message.success('Login successful!');
+      message.success('Вход выполнен успешно!');
       navigate('/');
     } else {
-      message.error('Invalid username or password');
+      message.error('Неверное имя пользователя или пароль');
     }
   };
 
@@ -25,30 +25,30 @@ const Login = () => {
       alignItems: 'center',
       background: '#f0f2f5'
     }}>
-      <Card title="Login" style={{ width: 300 }}>
+      <Card title="Вход" style={{ width: 300 }}>
         <Form
           name="login"
           onFinish={onFinish}
         >
           <Form.Item
             name="username"
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            rules={[{ required: true, message: 'Пожалуйста, введите имя пользователя!' }]}
           >
-            <Input prefix={<UserOutlined />} placeholder="Username" />
+            <Input prefix={<UserOutlined />} placeholder="Имя пользователя" />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            rules={[{ required: true, message: 'Пожалуйста, введите пароль!' }]}
           >
-            <Input.Password prefix={<LockOutlined />} placeholder="Password" />
+            <Input.Password prefix={<LockOutlined />} placeholder="Пароль" />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-              Log in
+              Войти
             </Button>
           </Form.Item>
           <div style={{ textAlign: 'center' }}>
-            Don't have an account? <Link to="/register">Register now!</Link>
+            Нет аккаунта? <Link to="/register">Зарегистрироваться!</Link>
           </div>
         </Form>
       </Card>

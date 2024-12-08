@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Button, theme } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, HomeOutlined } from '@ant-design/icons';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
 const MainLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -19,14 +22,20 @@ const MainLayout = ({ children }) => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['1']}
+          selectedKeys={[location.pathname]}
           items={[
             {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'Menu Item 1',
+              key: '/',
+              icon: <HomeOutlined />,
+              label: 'Главная',
+              onClick: () => navigate('/'),
             },
-            // Add more menu items as needed
+            {
+              key: '/profile',
+              icon: <UserOutlined />,
+              label: 'Профиль',
+              onClick: () => navigate('/profile'),
+            },
           ]}
         />
       </Sider>
