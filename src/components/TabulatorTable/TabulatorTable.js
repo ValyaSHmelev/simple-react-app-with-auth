@@ -14,16 +14,30 @@ const TabulatorTable = ({ data, columns, options = {} }) => {
         columns: columns,
         layout: 'fitColumns',
         responsiveLayout: 'hide',
+        layoutMode: 'fitData',
+        renderVertical: 'basic',
         ...options,
       });
-    }
 
-    // Cleanup on unmount
-    return () => {
-      if (tabulator.current) {
-        tabulator.current.destroy();
-      }
-    };
+      // Добавляем обработчик изменения размера
+      const resizeObserver = new ResizeObserver(() => {
+        if (tabulator.current) {
+          setTimeout(() => {
+            tabulator.current.redraw(true);
+          });
+        }
+      });
+
+      resizeObserver.observe(tableRef.current);
+
+      // Cleanup on unmount
+      return () => {
+        resizeObserver.disconnect();
+        if (tabulator.current) {
+          tabulator.current.destroy();
+        }
+      };
+    }
   }, [data, columns, options]);
 
   return <div ref={tableRef} />;
