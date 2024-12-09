@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Button, theme, Typography } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, HomeOutlined, CloudServerOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, HomeOutlined, CloudServerOutlined, TeamOutlined, ShoppingOutlined, ToolOutlined } from '@ant-design/icons';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -48,6 +48,24 @@ const MainLayout = ({ children }) => {
               icon: <UserOutlined />,
               label: 'Профиль',
               onClick: () => navigate('/profile'),
+            },
+            {
+              key: '/counterparties',
+              icon: <TeamOutlined />,
+              label: 'Контрагенты',
+              onClick: () => navigate('/counterparties'),
+            },
+            {
+              key: '/orders',
+              icon: <ShoppingOutlined />,
+              label: 'Заказы',
+              onClick: () => navigate('/orders'),
+            },
+            {
+              key: '/devices',
+              icon: <ToolOutlined />,
+              label: 'Приборы',
+              onClick: () => navigate('/devices'),
             },
           ]}
         />

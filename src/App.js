@@ -5,6 +5,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import Counterparties from './pages/Counterparties';
+import Orders from './pages/Orders';
+import Devices from './pages/Devices';
 import MainLayout from './components/Layout/MainLayout';
 
 const PrivateRoute = ({ children }) => {
@@ -35,6 +38,36 @@ function App() {
               <PrivateRoute>
                 <MainLayout>
                   <Profile />
+                </MainLayout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/counterparties"
+            element={
+              <PrivateRoute>
+                <MainLayout>
+                  <Counterparties />
+                </MainLayout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <PrivateRoute>
+                <MainLayout>
+                  <Orders />
+                </MainLayout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/devices"
+            element={
+              <PrivateRoute>
+                <MainLayout>
+                  <Devices />
                 </MainLayout>
               </PrivateRoute>
             }
