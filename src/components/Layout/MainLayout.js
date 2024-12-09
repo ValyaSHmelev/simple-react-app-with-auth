@@ -62,9 +62,9 @@ const MainLayout = ({ children }) => {
               style={{ fontSize: '16px', width: 64, height: 64 }}
             />
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <span>Welcome, {user?.username}</span>
+              <span>{user?.username}</span>
               <Button type="text" icon={<LogoutOutlined />} onClick={logout}>
-                Logout
+                Выйти
               </Button>
             </div>
           </div>
