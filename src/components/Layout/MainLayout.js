@@ -12,12 +12,13 @@ const MainLayout = ({ children }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: '100vh', height: '100vh', overflow: 'hidden' }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" style={{ 
           height: 64, 
@@ -68,15 +69,16 @@ const MainLayout = ({ children }) => {
             </div>
           </div>
         </Header>
-        <div style={{ padding: '16px 16px 0', background: colorBgContainer }}>
-          <div style={{ marginBottom: 16 }}>
-            {/* Toolbar area */}
-            <div style={{ padding: '8px', background: '#fafafa', borderRadius: borderRadiusLG }}>
-              Toolbar Content
-            </div>
-          </div>
-        </div>
-        <Content style={{ margin: '0 16px 16px', padding: 24, background: colorBgContainer, borderRadius: borderRadiusLG }}>
+        <Content
+          style={{
+            margin: '24px 16px',
+            padding: 24,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+            overflow: 'auto',
+            height: 'calc(100vh - 112px)', // 64px header + 24px top margin + 24px bottom margin
+          }}
+        >
           {children}
         </Content>
       </Layout>
