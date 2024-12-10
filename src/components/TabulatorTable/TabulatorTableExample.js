@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TabulatorTable from './TabulatorTable';
+import { Modal } from 'antd';
 
 const TabulatorTableExample = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  const handleCellClick = (e, cell) => {
+    setSelectedRow(cell.getData());
+    setIsModalOpen(true);
+  };
+
   const data = [
     { id: 1, name: "John Doe", age: 30, city: "New York" },
     { id: 2, name: "Jane Smith", age: 25, city: "Los Angeles" },
@@ -9,24 +18,43 @@ const TabulatorTableExample = () => {
   ];
 
   const columns = [
-    { title: "ID", field: "id", sorter: "number" },
+    { title: "ID", field: "id", sorter: "number" , cellClick: handleCellClick },
     { title: "Name", field: "name", sorter: "string" },
     { title: "Age", field: "age", sorter: "number" },
-    { title: "City", field: "city", sorter: "string" },
+    { title: "City", field: "city", sorter: "string" }
   ];
 
+  
+
   return (
-    <div>
-      <h2>Tabulator Example</h2>
-      <TabulatorTable 
-        data={data}
-        columns={columns}
-        options={{
-          height: "100%",
-          pagination: true,
-          paginationSize: 30,
-        }}
-      />
+    <div style={{  }}>
+      <div style={{ width: '100%' }}>
+        <TabulatorTable 
+          data={data}
+          columns={columns}
+          options={{
+            height: '100%',
+            layout: 'fitColumns',
+            pagination: true,
+            paginationSize: 10
+          }}
+        />
+      </div>
+      <Modal
+        title="Row Details"
+        open={isModalOpen}
+        onOk={() => setIsModalOpen(false)}
+        onCancel={() => setIsModalOpen(false)}
+      >
+        {selectedRow && (
+          <div>
+            <p><strong>ID:</strong> {selectedRow.id}</p>
+            <p><strong>Name:</strong> {selectedRow.name}</p>
+            <p><strong>Age:</strong> {selectedRow.age}</p>
+            <p><strong>City:</strong> {selectedRow.city}</p>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
