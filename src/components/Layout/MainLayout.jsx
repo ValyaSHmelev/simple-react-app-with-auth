@@ -8,7 +8,7 @@ const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
 
 const MainLayout = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
